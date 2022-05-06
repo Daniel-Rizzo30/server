@@ -1,7 +1,7 @@
 /*==================================================
 /routes/campuses.js
 
-It defines all the campuses-related routes.
+It defines all the campuses-related s.
 ==================================================*/
 // Import Express module
 const express = require('express');
