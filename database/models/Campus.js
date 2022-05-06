@@ -18,8 +18,15 @@ const Campus = db.define("campus", {
     allowNull: false
   },
 
+  imageUrl: {
+    type: Sequelize.STRING, 
+    isUrl: true, // Use Sequelize's Url checker
+    // Give it this default value - different from person's picture
+    defaultValue: "https://thumbs.dreamstime.com/b/university-campus-building-hall-education-students-cartoon-vector-illustration-brotherhood-smart-nerd-classes-hipster-young-155883208.jpg"
+  }, 
+
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT, // Must be text for it to be large. 
   }
 });
 
