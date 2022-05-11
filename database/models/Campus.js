@@ -11,17 +11,25 @@ const { dbUser } = require('../utils/configDB');
 const Campus = db.define("campus", {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false, 
+    // validate: {
+    //   notEmpty: true,
+    // }, 
   },
 
   address: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false, 
+    // validate: {
+    //   notEmpty: true,
+    // }, 
   },
 
   imageUrl: {
     type: Sequelize.STRING, 
-    isUrl: true, // Use Sequelize's Url checker
+    validate: {
+      isUrl: true, // Use Sequelize's Url checker
+    },    
     // Give it this default value - different from person's picture
     defaultValue: "https://thumbs.dreamstime.com/b/university-campus-building-hall-education-students-cartoon-vector-illustration-brotherhood-smart-nerd-classes-hipster-young-155883208.jpg"
   }, 
@@ -30,6 +38,8 @@ const Campus = db.define("campus", {
     type: Sequelize.TEXT, // Must be text for it to be large. 
   }
 });
+
+Campus.sync(); 
 
 // Export the campus model
 module.exports = Campus;

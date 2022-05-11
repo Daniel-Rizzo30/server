@@ -2,6 +2,7 @@
 /database/utils/seedDB.js
 
 It seeds the database with several initial students and campuses.
+Comment out the call to this if you want to stop reseeding. 
 ==================================================*/
 const { Campus, Student } = require('../models');  // Import database models
 
