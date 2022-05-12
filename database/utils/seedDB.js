@@ -2,6 +2,7 @@
 /database/utils/seedDB.js
 
 It seeds the database with several initial students and campuses.
+Comment out the call to this if you want to stop reseeding. 
 ==================================================*/
 const { Campus, Student } = require('../models');  // Import database models
 
@@ -33,6 +34,7 @@ const seedDB = async () => {
 		email: "JoeS@gmail.com", 
 		gpa: 3.7,
 	});
+	
 	// Create a new student for a campus
 	const dummy_student2 = await Student.create({
 		firstname: "Mary",

@@ -10,26 +10,37 @@ const Student = db.define("student", {
   firstname: {
     type: Sequelize.STRING,
     allowNull: false, 
-    is: ["[A-Z][a-z]*"] // Capital followed by lowercase only allowed
+    validate: {
+      is: ["^[A-Z][a-z]*$"], // Capital followed by lowercase only allowed, i flag at the end is Case Insensitive - bad
+      isAlpha: true
+    }
   },
 
   lastname: {
     type: Sequelize.STRING,
     allowNull: false, 
-    is: ["[A-Z][a-z]*"] // Capital followed by lowercase only allowed
+    validate: {
+      is: /^[A-Z][a-z]*$/, // Capital followed by lowercase only allowed 
+      isAlpha: true
+    }
   }, 
 
   // Add email, imageUrl, and gpa
   email: { 
     type: Sequelize.STRING,
     allowNull: false, // Needed
-    contains: "@", // Must have an at
-    isEmail: true // Also can just use Sequelize's Email checker
+    validate: {
+      contains: "@", // Must have an at
+      isEmail: true // Also can just use Sequelize's Email checker
+      // Email checking with regex: ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$ 
+    }
   }, 
 
   imageUrl: {
     type: Sequelize.STRING, 
-    isUrl: true, // Use Sequelize's Url checker
+    validate: {
+      isUrl: true, // Use Sequelize's Url checker
+    },
     // Give it this default value
     defaultValue: "https://i.pinimg.com/236x/fd/14/a4/fd14a484f8e558209f0c2a94bc36b855--milk-tart-entertaiment-news.jpg"
   }, 
@@ -43,6 +54,8 @@ const Student = db.define("student", {
     }
   }
 });
+
+Student.sync(); 
 
 // Export the student model
 module.exports = Student;

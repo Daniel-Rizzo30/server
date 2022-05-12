@@ -22,7 +22,7 @@ const syncDatabase = async () => {
     await db.sync({force: true});
     console.log('------Synced to db--------')
     // Database Seeding
-    await seedDB();  
+    await seedDB(); // Comment out to stop overwrite
     console.log('--------Successfully seeded db--------');
   } 
   catch (err) {
