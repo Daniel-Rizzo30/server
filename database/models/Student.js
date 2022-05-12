@@ -11,7 +11,8 @@ const Student = db.define("student", {
     type: Sequelize.STRING,
     allowNull: false, 
     validate: {
-      is: ["[A-Z][a-z]*"] // Capital followed by lowercase only allowed
+      is: ["^[A-Z][a-z]*$"], // Capital followed by lowercase only allowed, i flag at the end is Case Insensitive - bad
+      isAlpha: true
     }
   },
 
@@ -19,7 +20,8 @@ const Student = db.define("student", {
     type: Sequelize.STRING,
     allowNull: false, 
     validate: {
-      is: ["[A-Z][a-z]*"] // Capital followed by lowercase only allowed
+      is: /^[A-Z][a-z]*$/, // Capital followed by lowercase only allowed 
+      isAlpha: true
     }
   }, 
 
